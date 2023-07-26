@@ -9,20 +9,20 @@ with sync_playwright() as p:
     page.pause()
 
     # ! 1 all()
-    # for li in page.locator(f'//li').all():
-    #       print(li)
-    #  list_of_li = page.locator(f'//ol/li').all()
-    # print(list_of_li)
+    #for li in page.locator(f'//li').all():
+    #    print(li)
+    #list_of_li = page.locator(f'//ol/li').all()
+    #print(list_of_li)
 
     # ! 2 all_inner_texts() Повертає масив вузлів. внутрішні текстові значення для всіх відповідних вузлів.
 
-    #    list = page.locator(f'//li').all_inner_texts()
-    #    print(list)
-    #    list_of_li = page.locator(f'//ol/li').all_inner_texts()
-    #    print(list_of_li)
+    #list = page.locator(f'//li').all_inner_texts()
+    #print(list)
+    #list_of_li = page.locator(f'//ol/li').all_inner_texts()
+    #print(list_of_li)
     # ? прописати локатор для першого абзацу
-    #    text = page.locator(f'//p').all_inner_texts()
-    #    print(text)
+    #text = page.locator(f'//p').all_inner_texts()
+    #print(text)
 
     # ! 3 all_text_contents() Повертає масив вузлів. текстові значення вмісту для всіх відповідних вузлів.
     #    texts = page.locator(f'//li').all_text_contents()
@@ -35,5 +35,32 @@ with sync_playwright() as p:
     # ! 5 blur() знімає фокус з твого вибраного елемента
     # ! 6 focus() додає фокусування на елемент
 
-    page.locator("xpath=//input[name=\"firstname\"]").focus()
-#    page.locator(f'//input[name="lastname"]').blur()
+    #page.locator(f'//input[@name="lastname"]').focus()
+    #page.keyboard.press('L')
+
+    #page.locator(f'//input[@name="lastname"]').blur()
+    #page.locator(f'//input[@name="firstname"]').focus()
+
+    # ! 7 bounding_box - я поки ХЗ як його робити
+
+    #box = page.locator(f'//button[text()="submit"]').bounding_box()
+    #print(box)
+    #page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
+
+
+    # ! 8 check - дозволяє переконатись чо чекбокс або радіобатон виставлено
+
+    #page.locator(f'//input[@name="male"]').check()
+
+
+    # ! 9 clear - очищує інпут чи інше поле для вводу
+
+#    page.locator(f'//input[@name="firstname"]').fill('Test')
+#    page.locator(f'//input[@name="firstname"]').clear()
+
+
+# ! 10 click -
+
+page.locator(f'//button[@class = "btn-primary"]').click()
+page.wait_for_timeout(2000)
+
