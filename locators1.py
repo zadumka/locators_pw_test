@@ -61,6 +61,30 @@ with sync_playwright() as p:
 
 # ! 10 click -
 
-page.locator(f'//button[@class = "btn-primary"]').click()
-page.wait_for_timeout(2000)
+#    page.locator(f'//button[@class = "btn-primary"]').click()
 
+
+# ! 11 count - Повертає кількість елементів, які відповідають локатору.
+
+#    count = page.locator(f'//ol/li').count()
+#    print(count)
+
+
+# ! 12 dblclick - подвійний клік, або можна використовувати для проставлення і зняття галочки в чекбоксах
+
+#    page.locator(f'//input[@name = "idk"]').dblclick()
+
+
+# ! 13 dispatch_event - Програмно надішліть подію для відповідного елемента.
+
+#    page.locator(f'//button[@class = "btn-primary"]').dispatch_event('click')
+
+# ! 14 drag_to - Перетягніть вихідний елемент до цільового елемента та відпустіть його.
+
+#    source = page.locator(f'//div[@class = "image"]/img')
+#    target = page.locator(f'//div[@class = "block"]')
+#    source.drag_to(target)
+#    print('drag image')
+
+
+# ! 15 evaluate - оцінити
