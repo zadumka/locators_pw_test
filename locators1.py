@@ -126,8 +126,15 @@ with sync_playwright() as p:
     # ! 24 highlight - Выделите соответствующий элемент(ы) на экране.
     # ! Полезно для отладки, не фиксируйте код, который использует
 
-    element = page.locator(f'//button[@class = "btn-primary"]')
-    element.highlight()
+    #element = page.locator(f'//button[@class = "btn-primary"]')
+    #element.highlight()
+    #page.wait_for_timeout(2000)
+
+    # ! 25 hover - Наведите курсор на соответствующий элемент.
+
+    #page.get_by_test_id("directions").hover()
+
+
 
 
 
