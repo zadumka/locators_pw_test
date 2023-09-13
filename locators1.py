@@ -8,6 +8,7 @@ with sync_playwright() as p:
     page.goto("https://victorstashko.github.io/locator_page/?firstname=&lastname=&age=&male=on#")
     page.pause()
 
+
     # ! 1 all()
     # for li in page.locator(f'//li').all():
     #    print(li)
@@ -119,7 +120,7 @@ with sync_playwright() as p:
     #print(img_w)
 
     # ? 24 frame_locator - При работе с iframe вы можете создать локатор фрейма,
-    # ! который будет входить в iframe и позволять находить элементы в этом iframe:
+    # ? который будет входить в iframe и позволять находить элементы в этом iframe:
 
     #locator = page.frame_locator(f'//div[@class= "iframe"]').get_by_text("Посмотреть")
     #locator.click()
@@ -183,7 +184,7 @@ with sync_playwright() as p:
 
     #print(page.locator(f'//input[@name= "firstname"]').is_editable())
     #print(page.locator(f'//ul').is_editable())
-    # ? який локатор не підставиш завжди виводе тру
+    # * який локатор не підставиш завжди виводе тру
 
     # ! 35 is_enabled - Повертає, чи ввімкнено елемент.
 
@@ -209,22 +210,76 @@ with sync_playwright() as p:
 
     # ? 39 nth - Повертає локатор до n-го відповідного елемента. Він заснований на нулі, nth(0) вибирає перший елемент.
     # ? 40 or_ Створює локатор, який відповідає будь-якому з двох локаторів
-    # ? 41 press - Фокусує відповідний елемент і натискає комбінацію клавіш.
+    # ! 41 press - Фокусує відповідний елемент і натискає комбінацію клавіш.
+
+    #some_element = page.locator(f'//input[@name="firstname"]')
+    #some_element.fill("NAME")
+    #some_element.press("Tab")
+
     # ? 42 screenshot - Зробіть скріншот елемента, який відповідає локатору
-    # ? 43 scroll_into_view_if_needed - Цей метод очікує на перевірку функціональності, а потім намагається прокрутити елемент у поле зору,
-    # ?якщо він не повністю видимий, як визначено коефіцієнтом IntersectionObserver.
-    # ? 44 select_option Вибирає параметр або параметри в <select>.
-    # ? 45 select_text - Цей метод очікує перевірки функціональності, потім фокусує елемент і вибирає весь його текстовий вміст.
-    # ? 46 set_checked - Встановити стан прапорця або радіоелемента
-    # ? 47 set_input_files - Завантажте файл або декілька файлів у <input type=file>.
-    # ? 48 tap - Виконайте жест торкання елемента, який відповідає локатору
-    # ? 49 text_content - Returns the node.textContent.
-    # ? 50 type - Фокусує елемент, а потім надсилає події натискання клавіші,
-    # ? натискання/введення та натискання клавіші для кожного символу в тексті.
-    # ? 51 uncheck - Переконайтеся, що прапорець або перемикач знято.
-    # ? 52 wait_for - Повертає, якщо елемент, указаний локатором, задовольняє параметр стану.
+
+    # ! 43 scroll_into_view_if_needed - Цей метод очікує на перевірку функціональності, а потім намагається прокрутити елемент у поле зору,
+    # ! якщо він не повністю видимий, як визначено коефіцієнтом IntersectionObserver.
+
+    #page.locator(f'//input[@type="file"]').scroll_into_view_if_needed()
+
+
+    # ! 44 select_option Вибирає параметр або параметри в <select>.
+
+    #page.locator(f'//select').select_option("Red")
+
+    # ! 45 select_text - Цей метод очікує перевірки функціональності, потім фокусує елемент і вибирає весь його текстовий вміст.
+
+    #page.locator(f'//ul').select_text()
+
+
+    # ! 46 set_checked - Встановити стан прапорця або радіоелемента
+
+    #page.locator(f'//input[@name="female"]').set_checked(True)
+
+    # ! 47 set_input_files - Завантажте файл або декілька файлів у <input type=file>.
+
+    # page.locator(f'//input[@type="file"]').set_input_files('text.txt')
+
+
+    # * 48 tap - Виконайте жест торкання елемента, який відповідає локатору
+    # * Цей локатор не виконується тому, що сторінка не підтримує операцію "tap"
+
+    # page.locator(f'//input[@type="file"]').tap()
+
+
+    # ! 49 text_content - Returns the node.textContent.
+
+    #content = page.locator(f'//ol/li')
+    #last_li = content.last.text_content()
+    #first_li = content.first.text_content()
+    #print(last_li)
+    #print(first_li)
+
+    # ! 50 type - Фокусує елемент, а потім надсилає події натискання клавіші,
+    # ! натискання/введення та натискання клавіші для кожного символу в тексті.
+
+    #element = page.get_by_label("firstname")
+    #element.type("Alyonka")
+
+
+    # ! 51 uncheck - Переконайтеся, що прапорець або перемикач знято.
+
+    #page.locator(f'//input[@name="male"]').uncheck()
+
+    # ! 52 wait_for - Повертає, якщо елемент, указаний локатором, задовольняє параметр стану.
+
+    #page.locator(f'//div[@class="image"]/img').wait_for()
+
     # ? 53 first - Returns locator to the first matching element.
+
+    #print(page.locator(f'//ol/li').first)
+
     # ? 54 last - Returns locator to the last matching element.
+
+    #print(page.locator(f'//ol/li').nth(-1))
+
+
     # ? 55 page - Сторінка, якій належить цей локатор.
     # ? 56 element_handle - Розв’язує заданий локатор до першого відповідного елемента DOM.
     # ? Якщо відповідних елементів немає, очікується на один. Якщо декілька елементів відповідають локатору, кидає.
