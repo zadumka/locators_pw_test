@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright, expect
+from tornado.web import url
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False, slow_mo=500)
@@ -42,11 +43,12 @@ with sync_playwright() as p:
     # page.locator(f'//input[@name="lastname"]').blur()
     # page.locator(f'//input[@name="firstname"]').focus()
 
-    # ? 7 bounding_box - я поки ХЗ як його робити
+    # ! 7 bounding_box - Этот метод возвращает ограничивающую рамку элемента, соответствующую локатору
 
-    # box = page.locator(f'//button[text()="submit"]').bounding_box()
-    # print(box)
-    # page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
+    #box = page.get_by_role("button", name="submit").bounding_box()
+    #print(box)
+    #page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
+
 
     # ! 8 check - дозволяє переконатись чо чекбокс або радіобатон виставлено
 
@@ -122,9 +124,17 @@ with sync_playwright() as p:
     # ? 24 frame_locator - При работе с iframe вы можете создать локатор фрейма,
     # ? который будет входить в iframe и позволять находить элементы в этом iframe:
 
-    #locator = page.frame_locator(f'//div[@class= "iframe"]').get_by_text("Посмотреть")
+    #locator = page.frame_locator(f'//div[@class="iframe"]').get_by_title("YouTube video player")
     #locator.click()
+    # Знаходимо фрейм за допомогою FrameLocator
+    frame_locator = page.frame_locator('iframe[src*="https://www.youtube.com/embed/6F643XUqJ-o"]')
+    frame_locator.locator('iframe')
 
+    # Отримуємо фрейм
+    #frame = frame_locator.locator()
+
+    # Тепер можемо виконати click() всередині фрейму
+    #frame.click(f'//div[@id="player"]')  # Замініть 'button_selector' на селектор вашого елемента
 
     # ! 24 highlight - Выделите соответствующий элемент(ы) на экране.
     # ! Полезно для отладки, не фиксируйте код, который использует
@@ -273,14 +283,20 @@ with sync_playwright() as p:
 
     # ? 53 first - Returns locator to the first matching element.
 
-    #print(page.locator(f'//ol/li').first)
+    #locator_first = page.locator(f'//ol/li')
+    #first_element = locator_first.first
+
 
     # ? 54 last - Returns locator to the last matching element.
 
     #print(page.locator(f'//ol/li').nth(-1))
 
 
-    # ? 55 page - Сторінка, якій належить цей локатор.
+    # ! 55 page - Сторінка, якій належить цей локатор.
+
+    #print(page.locator(f'//ol/li').page)
+
+
     # ? 56 element_handle - Розв’язує заданий локатор до першого відповідного елемента DOM.
     # ? Якщо відповідних елементів немає, очікується на один. Якщо декілька елементів відповідають локатору, кидає.
     # ? 57 element_handles - Розв’язує заданий локатор для всіх відповідних елементів DOM.
