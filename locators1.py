@@ -7,6 +7,7 @@ with sync_playwright() as p:
     page = new_context.new_page()
     page.wait_for_load_state("load")
     page.goto("https://victorstashko.github.io/locator_page/?firstname=&lastname=&age=&male=on#")
+    #page.goto("https://zadumka.github.io/goit-hw-06/")
     page.pause()
 
 
@@ -217,7 +218,26 @@ with sync_playwright() as p:
     #print(some_elem_list)
 
 
-    # ? 41 or_ Створює локатор, який відповідає будь-якому з двох локаторів
+    # * 41 or_ Створює локатор, який відповідає будь-якому з двох локаторів
+    # page.locator(f'//button[@class="hero-btn btn"]').click()
+    # check_box = page.locator(f'//span[@class="check-empty"]')
+    #
+    # text_name = page.get_by_text("Leave your contacts and we will call you back")
+    # expect(check_box.or_(text_name)).to_be_visible()
+    # if (text_name.is_visible()):
+    #     page.get_by_role("button", name="send").click()
+    # check_box.click()
+
+    # page_portf = page.locator('//a[@href="./portfolio.html"]')
+    # new_order = page.locator('//button[@class="hero-btn btn"]')
+    # new_order.click()
+    # dialog = page.get_by_text("Leave your contacts and we will call you back")
+    # expect(dialog.or_(page_portf)).to_be_visible()
+    # if (dialog.is_visible()):
+    #     page.get_by_role("button", name="close").click()
+    # page_portf.click()
+
+    # * не підходе сайт
 
     # ! 42 press - Фокусує відповідний елемент і натискає комбінацію клавіш.
 
@@ -225,7 +245,11 @@ with sync_playwright() as p:
     #some_element.fill("NAME")
     #some_element.press("Tab")
 
-    # ? 43 screenshot - Зробіть скріншот елемента, який відповідає локатору
+    # ! 43 screenshot - Зробіть скріншот елемента, який відповідає локатору
+    #page.locator('//input[@type="file"]').scroll_into_view_if_needed()
+    #page.locator('//input[@type="file"]').screenshot(animations="disabled", path="screenshot1.png")
+
+
 
     # ! 44 scroll_into_view_if_needed - Цей метод очікує на перевірку функціональності, а потім намагається прокрутити елемент у поле зору,
     # ! якщо він не повністю видимий, як визначено коефіцієнтом IntersectionObserver.
