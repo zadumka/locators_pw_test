@@ -11,7 +11,7 @@ with sync_playwright() as p:
     page.pause()
 
 
-    # ! 1 all()
+    # ! 1 all() - повертає масив локаторів, які вказують на відповідні елементи
     # for li in page.locator(f'//li').all():
     #    print(li)
     # list_all_li = page.locator(f'//ol/li').all()
@@ -50,7 +50,7 @@ with sync_playwright() as p:
     # print(box)
     # page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
 
-    # ! 8 check - дозволяє переконатись чо чекбокс або радіобатон виставлено
+    # ! 8 check - дозволяє переконатись що чекбокс або радіобатон виставлено
 
     # page.locator(f'//input[@name="male"]').check()
 
@@ -59,7 +59,7 @@ with sync_playwright() as p:
     #    page.locator(f'//input[@name="firstname"]').fill('Test')
     #    page.locator(f'//input[@name="firstname"]').clear()
 
-    # ! 10 click -
+    # ! 10 click - натискає на елемент
 
     #    page.locator(f'//button[@class = "btn-primary"]').click()
 
@@ -84,7 +84,13 @@ with sync_playwright() as p:
     #    print('drag image')
 
     # ! 15 evaluate - оцінити. Виконайте код JavaScript на сторінці, взявши відповідний елемент як аргумент.
+    # title_locator = page.locator("h1")  # Знаходимо заголовок сторінки за тегом <h1>
+    # title_text = title_locator.evaluate("node => node.innerText")
+    # print("Заголовок сторінки:", title_text)
 
+    # male_checkbox_locator = page.locator("input[name='male']")  # Знаходимо чекбокс за атрибутом 'name'
+    # is_checked = male_checkbox_locator.evaluate("node => node.checked")
+    # print("Чекбокс 'Male' обраний:", is_checked)
     # ! 16 get_by_role - Позволяет находить элементы по их роли ARIA, атрибутам ARIA и доступному имени.
 
     #    page.get_by_role("checkbox", name="female").check()
@@ -142,7 +148,7 @@ with sync_playwright() as p:
 
     #page.get_by_test_id("directions").hover()
 
-    # ! 27 fill -
+    # ! 27 fill - заповнює інпути
     #page.locator(f'//input[@name="firstname"]').fill('Test')
 
     # ! 28 filter- Цей метод звужує наявний локатор відповідно до параметрів,
@@ -159,13 +165,17 @@ with sync_playwright() as p:
     # page.locator(f'//input[@name="age"]').focus()
 
     # ! 30 inner_html -
-    #ul_list = page.locator(f'//ul')
-    #print(ul_list.inner_html())
+    # ul_list = page.locator(f'//ul')
+    # print(ul_list.inner_html())
+    # повертає html розмітку
+    #< li class ="first_li" > first text contains: Text1 </ li >
+    #< li title = "second_li" > second text contains: Text2 < / li >
+    #< li > third text contains: Text3 < / li >
 
-    # ! 31 inner_text
+    # ! 31 inner_text повертає рядок тексту
 
-    #text = page.locator(f'//p')
-    #print(text.inner_text())
+    # text = page.locator(f'//p')
+    # print(text.inner_text())
 
     # ! 32 input_value - Повертає значення для відповідного елемента <input>, <textarea> або <select>.
 
